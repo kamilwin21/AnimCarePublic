@@ -13,14 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimCare">
         <activity
+            android:name=".Authorization.AuthorizationActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
             android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.DeleteDiagnosisActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosisActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosis"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosis"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivityFiles.MyPets.PetDetailsActivity"
             android:exported="false" />
@@ -29,12 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 
