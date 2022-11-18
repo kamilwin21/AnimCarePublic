@@ -1,5 +1,12 @@
 package com.example.animcare.Authorization
 
+import android.content.Context
+import android.text.BoringLayout
+import android.widget.EditText
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.example.animcare.R
+import kotlinx.android.synthetic.main.fragment_registration.*
 import java.io.Serializable
 import java.util.regex.Pattern
 
@@ -10,6 +17,12 @@ class User: Serializable {
     private var uid: String = String()
     private var name: String = String()
     private var age: Int = 0
+    private var dataStatusValidationLogin: Boolean = false
+    private var dataStatusValidationPassword: Boolean = false
+    private var dataStatusValidationRepeatPassword: Boolean = false
+    private var dataStatusValidationName: Boolean = false
+    private var dataStatusValidationAge: Boolean = false
+    private var context: Context? = null
 
     constructor()
 
@@ -67,8 +80,23 @@ class User: Serializable {
             }
         }
     }
-    fun setAge(age: Int){
-        this.age = age
+    fun setAge(age: String): Boolean{
+        var correctness = false
+        if (age.isNullOrEmpty()){
+            correctness = false
+        }else{
+            correctness = ageCorrectness(age.toInt())
+        }
+        return when(correctness){
+            true -> {
+                this.age = age.toInt()
+                true
+            }
+            false -> { false }
+        }
+    }
+    fun setContext(context: Context){
+        this.context = context
     }
 
     fun getRepeatPassword(): String{
@@ -89,6 +117,134 @@ class User: Serializable {
     }
     fun getAge(): Int{
         return this.age
+    }
+    fun getContext(): Context{
+        return this.context!!
+    }
+
+    private fun getDataStatusValidation(): Boolean{
+
+        return if (dataStatusValidationLogin && dataStatusValidationPassword && dataStatusValidationRepeatPassword &&
+            dataStatusValidationName && dataStatusValidationAge){
+            dataStatusValidationPassword == dataStatusValidationRepeatPassword
+
+        }else{
+            false
+        }
+    }
+    fun register(){
+        when(getDataStatusValidation()){
+            true -> {
+                Toast.makeText(this.context, "Pomyślnie zalogowano", Toast.LENGTH_SHORT).show()
+            }
+            false -> {
+                Toast.makeText(this.context, "Błąd rejestracji", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
+
+    fun registrationDataValidation(requireContext: Context, checkEmail: Boolean,
+        checkPassword: Boolean, checkRepeatPassword: Boolean, checkName: Boolean, checkAge: Boolean,
+                                   authorization_login_registration: EditText,
+                                    authorization_password_registration: EditText,
+                                   authorization_repeat_password_registration: EditText,
+                                   authorization_name_registration: EditText,
+                                   authorization_age_registration: EditText
+                                   ){
+
+
+        when(checkEmail){
+            true -> {
+                println("Email -> poprawny")
+                authorization_login_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                dataStatusValidationLogin= true
+            }
+            false -> {
+                println("Email -> niepoprawny")
+                authorization_login_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                dataStatusValidationLogin = false
+            }
+        }
+        when(checkPassword){
+            true -> {
+                println("Password -> poprawny")
+                authorization_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                dataStatusValidationPassword = true
+
+
+            }
+            false -> {
+                println("Password -> niepoprawny")
+                authorization_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                dataStatusValidationPassword = false
+
+            }
+
+        }
+        when(checkRepeatPassword){
+            true -> {
+                println("RepeatPassword -> poprawny")
+                authorization_repeat_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                dataStatusValidationRepeatPassword = true
+                if (this.repeatPassword == this.password){
+                    authorization_repeat_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                    dataStatusValidationRepeatPassword = true
+                }else {
+                    authorization_repeat_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                    dataStatusValidationRepeatPassword = false
+                }
+
+            }
+            false -> {
+                println("RepeatPassword -> niepoprawny")
+                authorization_repeat_password_registration.background = ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                dataStatusValidationRepeatPassword = false
+            }
+
+        }
+        when(checkName) {
+            true -> {
+                println("Name -> poprawny")
+                authorization_name_registration.background =
+                    ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                dataStatusValidationName = true
+            }
+            false -> {
+                println("Name -> niepoprawny")
+                authorization_name_registration.background =
+                    ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                dataStatusValidationName = false
+            }
+        }
+
+        when(checkAge){
+            true -> {
+                println("Age -> poprawny")
+                authorization_age_registration.background =
+                    ContextCompat.getDrawable(requireContext, R.drawable.green_border)
+                dataStatusValidationAge = true
+
+            }
+            false -> {
+                println("Age -> niepoprawny")
+                authorization_age_registration.background =
+                    ContextCompat.getDrawable(requireContext, R.drawable.red_border)
+                dataStatusValidationAge = false
+
+            }
+        }
+
+    }
+
+    private fun ageCorrectness(age: Int): Boolean{
+        var pattern = Pattern.compile("[0-9]+")
+        val matcher = pattern.matcher(age.toString())
+        return when(matcher.matches()){
+            true -> { true }
+            false -> { false }
+        }
     }
 
     private fun nameCorrectness(name: String): Boolean{

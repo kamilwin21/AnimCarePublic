@@ -1,8 +1,10 @@
 package com.example.animcare.Authorization
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -24,6 +26,7 @@ class Authorization: Serializable {
     private var registrationFragment = RegistrationFragment()
     private var authorization_image_view: ImageView? = null
     private var authorization_text_view: TextView? = null
+    private var context: Context? = null
 
 
     constructor()
@@ -46,6 +49,7 @@ class Authorization: Serializable {
     fun setUser(user: User){
         this.user = user
     }
+
     //======================================================================================
     //================================----Getters----=======================================
     //======================================================================================
@@ -64,9 +68,12 @@ class Authorization: Serializable {
     fun getUser():User{
         return this.user
     }
+
     //======================================================================================
     //==============================----Functions----=======================================
     //======================================================================================
+
+
 
     fun setVisibleImageAndTextView(){
         this.authorization_image_view!!.visibility = View.VISIBLE

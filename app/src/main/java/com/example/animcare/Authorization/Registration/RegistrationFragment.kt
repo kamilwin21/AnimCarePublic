@@ -1,5 +1,6 @@
 package com.example.animcare.Authorization.Registration
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.animcare.Authorization.Authorization
 import com.example.animcare.R
 import kotlinx.android.synthetic.main.activity_authorization.*
@@ -72,36 +74,19 @@ class RegistrationFragment : Fragment() {
         val bundle = requireArguments()
         var authorization = bundle.getSerializable("authorization") as Authorization
         var user =  authorization.getUser()
-
         val checkEmail = user.setEmail(authorization_login_registration.text.toString())
         val checkPassword = user.setPassword(authorization_password_registration.text.toString())
         val checkRepeatPassword = user.setRepeatPassword(authorization_repeat_password_registration.text.toString())
-        val checkAge = user.setAge(authorization_age_registration.text.toString().toInt())
+        val checkAge = user.setAge(authorization_age_registration.text.toString())
         val checkName = user.setName(authorization_name_registration.text.toString())
 
-        if (checkEmail){
-            println("Email -> poprawny")
-        }else if (!checkEmail){
-            println("Email -> niepoprawny")
-        }
-        if(checkPassword){
-            println("Hasło -> poprawne")
-        }else if (!checkPassword){
-            println("Hasło -> niepoprawne")
-        }
-        if (checkRepeatPassword){
-            println("RepeatPassword -> poprawne")
-        }else if (!checkRepeatPassword){
-            println("RepeatPassword -> niepoprawne")
-        }
-        if (checkName){
-            println("Nazwa -> poprawne")
-        }else if (!checkName){
-            println("Nazwa -> niepoprawne")
-        }
+        user.setContext(requireContext())
+        user.registrationDataValidation(requireContext(), checkEmail,
+            checkPassword, checkRepeatPassword, checkName, checkAge,
+            authorization_login_registration, authorization_password_registration, authorization_repeat_password_registration,
+        authorization_name_registration, authorization_age_registration)
 
-
-
+        user.register()
     }
 
     private val mySetOnClickListenerForBtnBackToLoginRegistration = View.OnClickListener {
