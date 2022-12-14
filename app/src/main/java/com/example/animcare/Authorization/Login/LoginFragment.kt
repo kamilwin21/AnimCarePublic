@@ -8,9 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.animcare.Authorization.Authorization
 import com.example.animcare.Authorization.Registration.RegistrationFragment
+import com.example.animcare.MainActivity
 import com.example.animcare.R
+import com.google.android.gms.dynamic.IFragmentWrapper
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_authorization.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -28,6 +34,7 @@ class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,14 +58,16 @@ class LoginFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+//        authorization_login.setText("kamilwin21@gmail.com")
+//        authorization_password.setText("123456789")
+
+
+        val user = authorization.getUser()
+        user.setContext(requireContext())
         authorization = arguments?.getSerializable("authorization") as Authorization
         authorization.setTextInTextView(resources.getString(R.string.login))
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-        btn_login.setOnClickListener{
 
-
-
-        }
 
         authorization_login.setOnTouchListener(myViewOnTouchListener)
         authorization_password.setOnTouchListener(myViewOnTouchListener)
@@ -72,13 +81,35 @@ class LoginFragment : Fragment() {
 
         }
 
-        btn_login.setOnClickListener{
-
-
-        }
 
         btn_registration.setOnClickListener(btnRegistrationClickListener)
 
+
+        btn_login.setOnClickListener{
+
+            val loginDataValidation = user.loginDataValidation(
+                requireContext(),
+                authorization_login.text.toString(),
+                authorization_password.text.toString()
+            )
+
+            when(loginDataValidation){
+                true -> {
+                    user.login(Firebase.auth, requireContext(), requireActivity(), authorization_login.text.toString(), authorization_password.text.toString())
+
+                }
+                false -> {
+
+                }
+            }
+
+
+
+
+
+
+
+        }
 
 
 
@@ -102,6 +133,8 @@ class LoginFragment : Fragment() {
         bundle.putSerializable("authorization", authorization)
         registrationFragment.arguments = bundle
         authorization.goToFragment(registrationFragment)
+
+        hideKeyBoard()
 
 
     }

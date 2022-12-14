@@ -2,6 +2,9 @@ package com.example.animcare.Authorization.Registration
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.BoringLayout
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -11,8 +14,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.animcare.Authorization.Authorization
+import com.example.animcare.Authorization.Login.LoginFragment
+import com.example.animcare.MainActivityFiles.Fragments.BreedOfAnimal
 import com.example.animcare.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_authorization.*
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 import java.lang.ref.ReferenceQueue
 
@@ -47,8 +54,6 @@ class RegistrationFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_registration, container, false)
     }
 
-
-
     override fun onStart() {
         super.onStart()
 
@@ -61,15 +66,18 @@ class RegistrationFragment : Fragment() {
         authorization_name_registration.setOnTouchListener(myTouchListenerRegistration)
         authorization_repeat_password_registration.setOnTouchListener(myTouchListenerRegistration)
 
-
         btn_back_to_login_registration.setOnClickListener(mySetOnClickListenerForBtnBackToLoginRegistration)
-
         btn_register_registration.setOnClickListener(mySetOnClickListenerForBtnRegister)
 
-
-
-
+        eye_showing_password.setOnClickListener(mySetOnClickListenerForEyeShowingPasswordRegistration)
+        eye_showing_repeat_password.setOnClickListener(mySetOnClickListenerForEyeShowingRepeatPasswordRegistration)
     }
+
+
+    //=======================================================================================================
+    //========================================----Listeners----==============================================
+    //=======================================================================================================
+
     private val mySetOnClickListenerForBtnRegister = View.OnClickListener {
         val bundle = requireArguments()
         var authorization = bundle.getSerializable("authorization") as Authorization
@@ -80,16 +88,54 @@ class RegistrationFragment : Fragment() {
         val checkAge = user.setAge(authorization_age_registration.text.toString())
         val checkName = user.setName(authorization_name_registration.text.toString())
 
+//        user.setUid(FirebaseAuth.getInstance().currentUser!!.uid)
+        user.setActivity(requireActivity())
         user.setContext(requireContext())
         user.registrationDataValidation(requireContext(), checkEmail,
             checkPassword, checkRepeatPassword, checkName, checkAge,
             authorization_login_registration, authorization_password_registration, authorization_repeat_password_registration,
-        authorization_name_registration, authorization_age_registration)
+        authorization_name_registration, authorization_age_registration,
+        eye_showing_password, eye_showing_repeat_password
+            )
 
-        user.register()
+
+        val checkRegistration = user.register()
+        when(checkRegistration){
+            true -> {
+                setEmptyTextViews()
+                requireActivity().onBackPressed()
+
+            }
+        }
+
+
+    }
+
+    private val mySetOnClickListenerForEyeShowingPasswordRegistration = View.OnClickListener {
+        if (authorization_password_registration.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+            authorization_password_registration.transformationMethod = PasswordTransformationMethod.getInstance()
+        }else if (authorization_password_registration.transformationMethod == PasswordTransformationMethod.getInstance()){
+            authorization_password_registration.transformationMethod = HideReturnsTransformationMethod.getInstance()
+        }
+
+
+
+
+    }
+    private val mySetOnClickListenerForEyeShowingRepeatPasswordRegistration = View.OnClickListener {
+        if (authorization_repeat_password_registration.transformationMethod == HideReturnsTransformationMethod.getInstance()){
+            authorization_repeat_password_registration.transformationMethod = PasswordTransformationMethod.getInstance()
+        }else if (authorization_repeat_password_registration.transformationMethod == PasswordTransformationMethod.getInstance()){
+            authorization_repeat_password_registration.transformationMethod = HideReturnsTransformationMethod.getInstance()
+        }
+
+
+
+
     }
 
     private val mySetOnClickListenerForBtnBackToLoginRegistration = View.OnClickListener {
+        setEmptyTextViews()
         requireActivity().onBackPressed()
     }
 
@@ -99,6 +145,37 @@ class RegistrationFragment : Fragment() {
             authorization.setGone()
         }
         false
+    }
+
+    //=======================================================================================================
+    //========================================----Functions----==============================================
+    //=======================================================================================================
+
+    private fun setEmptyTextViews(){
+        authorization_login_registration.setText("")
+        authorization_password_registration.setText("")
+        authorization_repeat_password_registration.setText("")
+        authorization_name_registration.setText("")
+        authorization_age_registration.setText("")
+    }
+
+    private fun settingsForRegistrationPassword(passwordStatus: Boolean){
+        when(passwordStatus){
+            true -> {
+                eye_showing_password.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_remove_green_eye_24)
+
+            }
+            false -> {
+                eye_showing_password.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_remove_red_eye_24)
+            }
+
+
+
+        }
+
+
+
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.animcare.Authorization
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.animcare.Authorization.Registration.RegistrationFragment
 import com.example.animcare.DatabaseFiles.DataBase
 import com.example.animcare.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -28,12 +30,16 @@ class Authorization: Serializable {
     private var authorization_text_view: TextView? = null
     private var context: Context? = null
 
-
     constructor()
 
     //======================================================================================
     //==================================----SETTERS----=====================================
     //======================================================================================
+
+
+    fun setContext(context: Context){
+        this.context = context
+    }
     fun setImageView(imageView: ImageView){
         this.authorization_image_view = imageView
     }
@@ -72,6 +78,7 @@ class Authorization: Serializable {
     //======================================================================================
     //==============================----Functions----=======================================
     //======================================================================================
+
 
 
 
@@ -139,6 +146,10 @@ class Authorization: Serializable {
             .replace(this.authorizationFragmentContainer, fragment)
             .addToBackStack(fragment.javaClass.name)
             .commit()
+    }
+    fun goToActivity(className: Class<*>){
+        val intent = Intent(this.context, className)
+        this.context!!.startActivity(intent)
     }
 
 

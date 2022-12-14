@@ -1,15 +1,19 @@
 package com.example.animcare
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -17,25 +21,16 @@ import com.example.animcare.Classes.*
 import com.example.animcare.DatabaseFiles.DataBase
 import com.example.animcare.Dogs.CavalierKingCharlesSpaniel
 import com.example.animcare.MainActivityFiles.Fragments.*
-import com.example.animcare.MainActivityFiles.MyPets.Class.CustomDateAndTime
-import com.example.animcare.MainActivityFiles.MyPets.Class.Diagnosis
 import com.example.animcare.MainActivityFiles.MyPets.Fragments.PetsFragment
-import com.example.animcare.MainActivityFiles.MyPets.petsUser
+import com.example.animcare.Options.OptionsFragment
 import com.example.animcare.Quizzes.Cats
 import com.example.animcare.Quizzes.Dogs
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import com.google.type.DateTime
 import kotlinx.android.synthetic.main.nav_header.*
-import java.time.LocalDate
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.ResolverStyle
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     val diseaseDetectionFragment = DiseaseDetectionFragment()
     @RequiresApi(Build.VERSION_CODES.O)
     val petsFragment = PetsFragment()
+    val optionsFragment = OptionsFragment()
     //Connection from database auth
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -174,25 +170,20 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-
 //        var savePetsUser = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
 //        savePetsUser.child("UsersPets").child(FirebaseAuth.getInstance().currentUser!!.uid)
 //            .setValue(petsUser.pets)
 
-
-        auth = Firebase.auth
-        auth.signInWithEmailAndPassword("kamil@gmail.com", "123456789")
-            .addOnCompleteListener(this){
-                if(it.isSuccessful){
-                    Toast.makeText(applicationContext, "Successed Login", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(applicationContext, "Failed Login", Toast.LENGTH_SHORT).show()
-                }
-            }
+//
+//        auth = Firebase.auth
+//        auth.signInWithEmailAndPassword("kamilwin21@gmail.com", "123456789")
+//            .addOnCompleteListener(this){
+//                if(it.isSuccessful){
+//                    Toast.makeText(applicationContext, "Successed Login", Toast.LENGTH_SHORT).show()
+//                }else{
+//                    Toast.makeText(applicationContext, "Failed Login", Toast.LENGTH_SHORT).show()
+//                }
+//            }
 
 
         var db = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
@@ -212,8 +203,6 @@ class MainActivity : AppCompatActivity() {
         actionBarToggle.syncState()
 
         navView = findViewById(R.id.navView)
-
-
 
 
 
@@ -252,6 +241,11 @@ class MainActivity : AppCompatActivity() {
                     closeNavigationDrawer(this.drawerLayout)
                     true
                 }
+                R.id.userOption -> {
+                    goToFragment(optionsFragment)
+                    closeNavigationDrawer(this.drawerLayout)
+                    true
+                }
                 else -> {
                     false
                 }
@@ -271,6 +265,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.other_options, menu)
+        var sa = R.drawable.default_profile_image
+        var str = sa.toString()
+
+
+
+        println("STR: ${str}")
+//        imageViewNavHeader.background = ContextCompat.getDrawable(applicationContext, "${R.drawable.default_profile_image}".toInt())
+//        imageViewNavHeader.background = ContextCompat.getDrawable(applicationContext, str.toInt())
+
         return true
     }
 
@@ -290,6 +293,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        nameNavHeader.text = getNameFromEmail(FirebaseAuth.getInstance().currentUser?.email.toString())
+        var connect = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
+//        println("UID: ${FirebaseAuth.getInstance().currentUser!!.uid}")
+        if(FirebaseAuth.getInstance().currentUser?.uid != null){
+            connect.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child("imagePath")
+                .addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()){
+//                        imageViewNavHeader.background = ContextCompat.getDrawable(applicationContext, snapshot.value.toString().toInt())
+                            var uri = Uri.parse(snapshot.getValue(String::class.java))
+                            var inputSteam = applicationContext.contentResolver.openInputStream(uri)
+                            println("URI: ${snapshot}")
+                            imageViewNavHeader.background = Drawable.createFromStream(inputSteam, snapshot.getValue(String::class.java))
+
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                })
+
+        }
+
+
+
+//        imageViewNavHeader.background = ContextCompat.getDrawable(applicationContext, R.drawable.default_profile_image)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(navView)
         }else{
@@ -319,6 +351,13 @@ class MainActivity : AppCompatActivity() {
 
     //FUNCTIONS
     //=========================================================================================
+
+    private fun getNameFromEmail(userEmail: String): String {
+        var email = userEmail
+
+
+        return email.substringBefore("@")
+    }
     private fun closeNavigationDrawer(drawerLayout: DrawerLayout){
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)

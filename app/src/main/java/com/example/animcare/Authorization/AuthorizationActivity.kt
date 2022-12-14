@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_authorization.*
 import kotlinx.android.synthetic.main.fragment_details_about_animal.*
+import kotlinx.android.synthetic.main.fragment_registration.*
 
 class AuthorizationActivity : AppCompatActivity() {
 
@@ -44,15 +45,34 @@ class AuthorizationActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         authorization = setAuthorization()
+
+        clearEditTextsFromRegistrationFragmentOnBackPressed()
+
         authorization.setTextInTextView(resources.getString(R.string.login))
         authorization.setVisibleImageAndTextView()
         authorization.removeLastFragmentFromFragmentsArray("RegistrationFragment", loginFragment)
+
+
 
     }
 
     //================================================================================================
     //====================================----Functions----===========================================
     //================================================================================================
+
+    private fun clearEditTextsFromRegistrationFragmentOnBackPressed(){
+
+        var id = supportFragmentManager.fragments.size - 1
+        var fragment = supportFragmentManager.fragments[id]
+        if (fragment.javaClass.simpleName == "RegistrationFragment"){
+            fragment.authorization_login_registration.setText("")
+            fragment.authorization_password_registration.setText("")
+            fragment.authorization_repeat_password_registration.setText("")
+            fragment.authorization_name_registration.setText("")
+            fragment.authorization_age_registration.setText("")
+        }
+
+    }
 
     private fun setAuthorization():Authorization{
         authorization.setAuthorizationFragmentContainer(R.id.authorizationFragmentContainer)

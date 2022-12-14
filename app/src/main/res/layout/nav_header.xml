@@ -13,7 +13,6 @@
         android:layout_marginLeft="10dp"
         android:orientation="horizontal">
         <ImageView
-
             android:id="@+id/imageViewNavHeader"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -29,14 +28,20 @@
 
             <TextView
                 android:id="@+id/nameNavHeader"
-                android:layout_centerVertical="true"
-                android:paddingLeft="10dp"
-                android:textSize="20dp"
-                android:gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                />
+                android:layout_centerVertical="true"
+                android:autoSizeMaxTextSize="40dp"
+                android:autoSizeMinTextSize="20dp"
+                android:autoSizeStepGranularity="2dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="Name" />
+
+
+
 
         </RelativeLayout>
 

@@ -474,6 +474,7 @@ class EditingExistingFragment : Fragment() {
         var localDateNow = LocalDate.now()
         var returnedValue = 0
         Period.between(localDateNow, birthday)
+
         println("Period.beteen: ${Period.between(localDateNow, birthday).years}")
         var year = abs(Period.between(localDateNow, birthday).years)
         if (year > 0){

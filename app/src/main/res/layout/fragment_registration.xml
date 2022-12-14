@@ -26,32 +26,67 @@
             android:background="@drawable/border_1"
             android:hint="@string/email"
             />
-        <EditText
-            android:id="@+id/authorization_password_registration"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:background="@drawable/border_1"
-            android:hint="@string/password"
-            />
-        <EditText
-            android:id="@+id/authorization_repeat_password_registration"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/authorization_password_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_1"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+            <ImageView
+                android:id="@+id/eye_showing_password"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_remove_default_eye_24"
+                />
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:background="@drawable/border_1"
-            android:hint="@string/repeat_password"
-            />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/authorization_repeat_password_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:background="@drawable/border_1"
+                android:hint="@string/repeat_password"
+                />
+
+            <ImageView
+                android:id="@+id/eye_showing_repeat_password"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_remove_default_eye_24"
+                />
+
+
+
+        </RelativeLayout>
+
         <EditText
             android:id="@+id/authorization_name_registration"
             android:layout_width="match_parent"

@@ -35,7 +35,29 @@ class QuizTypeAdapter(val context: Context, val supportFragmentManager: Fragment
         val layout = holder.view.recycler_view_quiz_type_layout
 
 
+
         quizType.text = AnimalsTypes.typesOfQuiz[position]
+
+        when(position){
+            0 -> {
+                layout.isEnabled  = false
+                layout.isActivated = false
+                quizType.isEnabled = false
+
+            }
+            2 -> {
+                layout.isEnabled  = false
+                layout.isActivated = false
+                quizType.isEnabled = false
+
+
+            }
+            3 -> {
+                layout.isEnabled  = false
+                quizType.isEnabled = false
+
+            }
+        }
 
 
         val oldColor = quizType.textColors

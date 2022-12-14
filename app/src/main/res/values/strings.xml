@@ -24,17 +24,15 @@
     <!--Authorization-->
     <string name="login">Logowanie</string>
     <string name="registration">Rejestracja</string>
-        <!--Login-->
-        <string name="log_in">Zaloguj</string>
-        <string name="email">Email(example12@gmail.com)</string>
-        <string name="password">Hasło</string>
-        <string name="repeat_password">Powtórz hasło</string>
-        <!--Registration-->
-        <string name="register">Zarejestruj</string>
-        <string name="or">Lub</string>
-        <string name="return_to_login">Wróć do logowania</string>
-
-
+    <!--Login-->
+    <string name="log_in">Zaloguj</string>
+    <string name="email">Email(example12@gmail.com)</string>
+    <string name="password">Hasło</string>
+    <string name="repeat_password">Powtórz hasło</string>
+    <!--Registration-->
+    <string name="register">Zarejestruj</string>
+    <string name="or">Lub</string>
+    <string name="return_to_login">Wróć do logowania</string>
 
 
     <!-- Quiz Fragment -->
@@ -124,5 +122,9 @@
 
     </string-array>
 
+
+    <!-- UserOptions -->
+    <string name="logout">Wyloguj</string>
+    <string name="select_photo">Wybierz zdjęcie</string>
 
 </resources>

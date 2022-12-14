@@ -39,6 +39,7 @@
     <item android:title="@string/opcje">
         <menu>
             <item
+                android:id="@+id/userOption"
                 android:title="@string/opcje"
                 />
         </menu>
