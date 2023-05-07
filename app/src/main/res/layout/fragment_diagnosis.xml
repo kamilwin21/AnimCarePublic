@@ -5,7 +5,7 @@
     android:id="@+id/diagnosis_layout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.DiagnosisFragment">
+    tools:context=".main_activity_files.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.DiagnosisFragment">
 
     <ScrollView
         android:layout_width="match_parent"

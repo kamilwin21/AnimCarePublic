@@ -1,40 +1,22 @@
 package com.example.animcare.Options.NewImage
 
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.net.toFile
-import androidx.core.view.get
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animcare.DatabaseFiles.DataBase
 import com.example.animcare.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_new_image.*
-import kotlinx.android.synthetic.main.fragment_new_image.view.*
 import kotlinx.android.synthetic.main.layout_in_new_profile_image_recycler_view.view.*
-import java.io.File
 
 class NewImageProfileAdapter(context: Context,val current_default_profile_image: ImageView,val recyclerView: View, var defaultImagePath: String): RecyclerView.Adapter<MyNewImageProfileAdapter>(){
     var selectedPosition = -1
-
-    init {
-//        recyclerView.setOnClickListener {
-//
-//        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyNewImageProfileAdapter {
         val inflater = LayoutInflater.from(parent.context)
@@ -47,18 +29,11 @@ class NewImageProfileAdapter(context: Context,val current_default_profile_image:
         val image = holder.view.image_view_in_new_profile_image
         val selectedImage = holder.view.image_view_in_new_profile_image_selected_image
 
-
-
-
-
         if (position == selectedPosition){
             selectedImage.visibility = View.VISIBLE
         }else{
             selectedImage.visibility = View.GONE
         }
-
-
-
 
         when(position){
             0 ->{

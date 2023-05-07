@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="5dp"
-    tools:context=".MainActivityFiles.Fragments.DidacticsFragment">
+    tools:context=".main_activity_files.Fragments.DidacticsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

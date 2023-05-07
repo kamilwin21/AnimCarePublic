@@ -1,35 +1,30 @@
 package com.example.animcare
 
 import android.annotation.SuppressLint
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.animcare.Classes.*
 import com.example.animcare.DatabaseFiles.DataBase
 import com.example.animcare.Dogs.CavalierKingCharlesSpaniel
-import com.example.animcare.MainActivityFiles.Fragments.*
-import com.example.animcare.MainActivityFiles.MyPets.Fragments.PetsFragment
 import com.example.animcare.Options.OptionsFragment
 import com.example.animcare.Quizzes.Cats
 import com.example.animcare.Quizzes.Dogs
+import com.example.animcare.main_activity_files.Fragments.*
+import com.example.animcare.main_activity_files.MyPets.Fragments.PetsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.nav_header.*
 
 class MainActivity : AppCompatActivity() {
@@ -161,33 +156,24 @@ class MainActivity : AppCompatActivity() {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("WrongConstant")
+    @SuppressLint("WrongConstant", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        var animation = ObjectAnimator.ofInt(progressBar, "progress", 100,0)
+//        animation.duration = 20
+//        animation.interpolator = DecelerateInterpolator(1f)
+//        animation.start()
 
 
+        val db = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
 
+        db.child("Dogs").child(CavalierKingCharlesSpaniel.cavalierKingCharlesSpaniel.race)
+            .setValue(CavalierKingCharlesSpaniel.cavalierKingCharlesSpaniel)
 
-//        var savePetsUser = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
-//        savePetsUser.child("UsersPets").child(FirebaseAuth.getInstance().currentUser!!.uid)
-//            .setValue(petsUser.pets)
-
-//
-//        auth = Firebase.auth
-//        auth.signInWithEmailAndPassword("kamilwin21@gmail.com", "123456789")
-//            .addOnCompleteListener(this){
-//                if(it.isSuccessful){
-//                    Toast.makeText(applicationContext, "Successed Login", Toast.LENGTH_SHORT).show()
-//                }else{
-//                    Toast.makeText(applicationContext, "Failed Login", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-
-
-        var db = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
-        db.child("Dogs").child(CavalierKingCharlesSpaniel.cavalierKingCharlesSpaniel.race).setValue(CavalierKingCharlesSpaniel.cavalierKingCharlesSpaniel)
+//        db.child("Dogs")
+//            .child(CavalierKingCharlesSpaniel.cavalierKingCharlesSpaniel.race).removeValue()
 
         var dbQuiz = FirebaseDatabase.getInstance(DataBase.dbReferName).reference
         dbQuiz.child("Quizzes").child(Dogs.psy.quizName).setValue(Dogs.psy)
@@ -318,6 +304,7 @@ class MainActivity : AppCompatActivity() {
                 })
 
         }
+
 
 
 

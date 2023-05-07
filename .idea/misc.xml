@@ -96,8 +96,11 @@
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/activity_main.xml" value="0.29375" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/activity_pet_details.xml" value="0.2421875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/activity_quiz.xml" value="0.2421875" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/animals_types_position_in_list_rw.xml" value="0.24166666666666667" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_add_new_pet_details.xml" value="0.21875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_add_pet.xml" value="0.15833333333333333" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_didactics.xml" value="0.21302083333333333" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_editing_existing.xml" value="0.21875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_general.xml" value="0.15833333333333333" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_login.xml" value="0.2421875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_new_image.xml" value="0.36666666666666664" />
@@ -107,10 +110,13 @@
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_quiz.xml" value="0.2421875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_quiz_details.xml" value="0.36666666666666664" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_registration.xml" value="0.2421875" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_single_choice.xml" value="0.36666666666666664" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_summary.xml" value="0.36666666666666664" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/fragment_true_or_false.xml" value="0.36666666666666664" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/layout_in_new_profile_image_recycler_view.xml" value="0.36666666666666664" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/my_pets_position_recycler_view.xml" value="0.2140625" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/nav_header.xml" value="0.17806484295845998" />
+        <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/layout/nav_header_pet_details.xml" value="0.21875" />
         <entry key="..\:/PAM/AnimCarePublic/app/src/main/res/menu/drawer_list.xml" value="0.29375" />
       </map>
     </option>

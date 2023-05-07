@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivityFiles.MyPets.PetDetailsActivityFiles.GeneralFragment">
+    tools:context=".main_activity_files.MyPets.PetDetailsActivityFiles.GeneralFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +23,6 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:gravity="center"
-                android:layout_marginBottom="20dp"
                 android:textSize="35dp"
                 android:background="#8EC5AD"
                 android:text="@string/general"
@@ -35,31 +33,53 @@
                 android:orientation="vertical"
 
                 >
-                <ImageView
-                    android:id="@+id/imageViewGeneralFragment"
-                    android:scaleType="fitXY"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:minHeight="250dp"
-                    android:minWidth="250dp"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:padding="2dp"
-                    android:background= "#8EC5AD"
-                    />
-                    <TextView
-                        android:id="@+id/change_image"
+<!--                android:scaleType="fitXY"-->
+
+<!--                android:layout_gravity="center"-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+
+                        android:id="@+id/imageViewGeneralFragmentBackground"
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:alpha="0.9"
+                        android:scaleType="matrix"
+                        android:layout_height="350dp">
+
+                    </ImageView>
+                    <ImageView
+                        android:id="@+id/imageViewGeneralFragment"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:layout_marginBottom="20dp"
-                        android:layout_width="250dp"
-                        android:layout_height="40dp"
-                        android:background="#8EC5AD"
-                        android:text="Zmień zdjęcie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="360dp"
+                        android:maxHeight="400dp"
                         />
 
+
+                </RelativeLayout>
+<!--                android:background= "#8EC5AD"-->
+
+
+
+
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/change_image"
+                android:layout_gravity="center"
+                android:layout_alignBottom="@id/imageViewGeneralFragment"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#8EC5AD"
+                android:text="Zmień zdjęcie"
+                />
 
             <TextView
                 android:layout_width="match_parent"

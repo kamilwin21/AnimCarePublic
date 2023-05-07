@@ -12,5 +12,17 @@
     <color name="customGray">#AAA9A9</color>
 <!--    <color name="custom1">#959595</color>-->
 
+    <!-- Colors for list of myPets -->
+    <color name="customBlue">#A6BFD3</color>
+    <color name="customOrange">#D59A7B</color>
+    <color name="customGreen">#6FA659</color>
+
+    <string-array name="colors">
+        <item>#A6BFD3</item>
+        <item>#D59A7B</item>
+        <item>#6FA659</item>
+    </string-array>
+
+
     <dimen name="textSize">20dp</dimen>
 </resources>

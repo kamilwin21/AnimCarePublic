@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.MyPets.Fragments.PetsFragment">
+    tools:context=".main_activity_files.MyPets.Fragments.PetsFragment">
 
     <TextView
         android:id="@+id/removing_info_TW"

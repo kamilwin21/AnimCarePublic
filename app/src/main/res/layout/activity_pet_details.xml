@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.MyPets.PetDetailsActivity">
+    tools:context=".main_activity_files.MyPets.PetDetailsActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewPetDetailsActivity"

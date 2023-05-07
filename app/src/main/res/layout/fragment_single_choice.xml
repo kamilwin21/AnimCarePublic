@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.Fragments.QuizFragmentFiles.QuizActivityFiles.SingleChoiceFragment">
+    tools:context=".main_activity_files.Fragments.QuizFragmentFiles.QuizActivityFiles.SingleChoiceFragment">
 
 
     <RelativeLayout
@@ -20,6 +20,11 @@
             android:scaleY="8" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
     <TextView

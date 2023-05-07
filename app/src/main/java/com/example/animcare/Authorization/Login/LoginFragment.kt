@@ -1,23 +1,16 @@
 package com.example.animcare.Authorization.Login
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.animcare.Authorization.Authorization
 import com.example.animcare.Authorization.Registration.RegistrationFragment
-import com.example.animcare.MainActivity
 import com.example.animcare.R
-import com.google.android.gms.dynamic.IFragmentWrapper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_authorization.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -87,15 +80,21 @@ class LoginFragment : Fragment() {
 
         btn_login.setOnClickListener{
 
+//            val loginDataValidation = user.loginDataValidation(
+//                requireContext(),
+//                authorization_login.text.toString(),
+//                authorization_password.text.toString()
+//            )
             val loginDataValidation = user.loginDataValidation(
                 requireContext(),
-                authorization_login.text.toString(),
-                authorization_password.text.toString()
+                "kamilwin21@gmail.com",
+                "123456789"
             )
 
             when(loginDataValidation){
                 true -> {
-                    user.login(Firebase.auth, requireContext(), requireActivity(), authorization_login.text.toString(), authorization_password.text.toString())
+                    user.login(Firebase.auth, requireContext(), requireActivity(), "kamilwin21@gmail.com", "123456789")
+//                    user.login(Firebase.auth, requireContext(), requireActivity(), authorization_login.text.toString(), authorization_password.text.toString())
 
                 }
                 false -> {

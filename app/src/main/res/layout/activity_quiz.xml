@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutQuizActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.Fragments.QuizFragmentFiles.QuizActivity">
+    tools:context=".main_activity_files.Fragments.QuizFragmentFiles.QuizActivity">
 
 
     <FrameLayout
@@ -19,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/bottomNavigation"
-            android:name="com.example.animcare.MainActivityFiles.Fragments.QuizFragmentFiles.QuizActivityFiles.SingleChoiceFragment"
+            android:name="com.example.animcare.main_activity_files.Fragments.QuizFragmentFiles.QuizActivityFiles.SingleChoiceFragment"
 
             />
 

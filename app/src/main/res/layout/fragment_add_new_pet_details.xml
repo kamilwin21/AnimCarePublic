@@ -4,7 +4,7 @@
     android:id="@+id/layout_add_new_pet_details_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityFiles.MyPets.PetDetailsActivityFiles.AddNewPetDetailsFragment">
+    tools:context=".main_activity_files.MyPets.PetDetailsActivityFiles.AddNewPetDetailsFragment">
 
 
     <RelativeLayout
@@ -27,6 +27,7 @@
                 android:background="#8EC5AD"
                 android:text="@string/general"
                 />
+
 
             <ImageView
                 android:src="@drawable/ic_baseline_add_photo_alternate_24"

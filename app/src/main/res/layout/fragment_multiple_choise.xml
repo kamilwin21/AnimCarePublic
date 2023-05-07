@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.Fragments.QuizFragmentFiles.QuizActivityFiles.MultipleChoiseFragment">
+    tools:context=".main_activity_files.Fragments.QuizFragmentFiles.QuizActivityFiles.MultipleChoiseFragment">
 
     <ProgressBar
         android:id="@+id/progressBarMultipleChoise"

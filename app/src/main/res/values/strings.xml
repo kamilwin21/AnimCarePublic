@@ -39,11 +39,11 @@
     <string name="rozpocznij">Rozpocznij quiz</string>
     <string name="info_o_quizie">Quizy w aplikacji mają na celu
                 wspierać oraz zwiększać wiedzę o wychowaniu zwierząt oraz uczyć
-                pozytywnych zachowań przy zwierzętach innych właścicieli.
+                pozytywnych zachowań przy nich.
     </string>
     <string name="info_o_quizie_2">
-            Przed rozpoczęciem quizu, masz do wyboru poziom trudności zadawanych pytań oraz tematykę
-            zadawanych pytań. Quiz może być odnośnie wszystkich zwierząt jak i danego typu zwierzęcia.
+            Przed rozpoczęciem quizu, masz do wyboru poziom trudności oraz tematykę
+            zadawanych pytań. Quiz może być ogólny tematycznie oraz skierowany na konkretny gatunek.
     </string>
     <string name="types_of_quiz">Wybierz temat quizu:</string>
     <string name="zatwierdz">Zatwierdź odpowiedź</string>
@@ -122,6 +122,13 @@
 
     </string-array>
 
+
+    <!-- Colors for list of myPets -->
+    <string-array name="colorsOfBackground">
+        <item>#A6BFD3</item>
+        <item>#D59A7B</item>
+        <item>#6FA659</item>
+    </string-array>
 
     <!-- UserOptions -->
     <string name="logout">Wyloguj</string>

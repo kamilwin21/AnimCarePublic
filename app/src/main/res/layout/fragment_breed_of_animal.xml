@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivityFiles.Fragments.BreedOfAnimal">
+    tools:context=".main_activity_files.Fragments.BreedOfAnimal">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_breed_of_animal"

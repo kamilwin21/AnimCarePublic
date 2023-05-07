@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimCare">
         <activity
+            android:name=".testing_package.TestingActivity"
+            android:exported="false" />
+        <activity
             android:name=".Authorization.AuthorizationActivity"
             android:exported="true">
             <intent-filter>
@@ -20,34 +23,24 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
-
         </activity>
-
         <activity
-            android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.DeleteDiagnosisActivity"
+            android:name=".main_activity_files.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.DeleteDiagnosisActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosisActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosis"-->
-<!--            android:exported="false" />-->
+            android:name=".main_activity_files.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosisActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".MainActivityFiles.MyPets.PetDetailsActivityFiles.DiagnosisFragmentFiles.AddNewDiagnosis" -->
+        <!-- android:exported="false" /> -->
         <activity
-            android:name=".MainActivityFiles.MyPets.PetDetailsActivity"
+            android:name=".main_activity_files.MyPets.PetDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivityFiles.Fragments.QuizFragmentFiles.QuizActivity"
+            android:name=".main_activity_files.Fragments.QuizFragmentFiles.QuizActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>
